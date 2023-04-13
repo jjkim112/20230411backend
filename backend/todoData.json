@@ -8,5 +8,10 @@
     "title": "빨래",
     "desc": "세탁기에 열심히 도렬라",
     "isDone": false
+  },
+  {
+    "title": "공부",
+    "desc": "연필들고 부셔라",
+    "isDone": true
   }
 ]

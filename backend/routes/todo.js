@@ -11,9 +11,16 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const { title, desc } = req.body;
+  //req.body는 인섬니아에서 그 바디부분 즉 요청자 입장에서 쓴 그 추가할 부분이 title desc 객체구조분해로 각각 title desc에 저장->객체구조분해는 프로퍼티값이 같게 써야함
+  if (!title || !desc) {
+    return res
+      .status(400)
+      .json({ error: "타이틀과 설명을 입력하셔야 합니다." });
+  }
+
   todoData.push({ title: title, desc: desc, isDone: false });
   // todoData.push({ title, desc }); 키값 벨류값이 같으므로 생략가능
-  console.log(todoData);
+  // console.log(todoData);
   res.json(todoData);
 });
 
@@ -24,7 +31,7 @@ router.put("/:id", (req, res) => {
     res.status(400).json({ error: "존재하지 않는 ID입니다." });
   }
   if (!title && desc) {
-    res
+    return res
       .status(400)
       .json({ error: "타이틀이나 설명 중에 하나의 값은 입력해야합니다" });
   }
